@@ -1,0 +1,5 @@
+---
+import Base from '../../layouts/Base.astro'; import AirportModule from '../../components/AirportModule.astro'; import { related } from '../../lib/data';
+const configs={'hong-kong':['香港','香港节点机场资料','Hong Kong'],'japan':['日本','日本节点机场资料','Japan'],'singapore':['新加坡','新加坡节点机场资料','Singapore'],'taiwan':['台湾','台湾节点机场资料','Taiwan'],'united-states':['美国','美国节点机场资料','United States']} as const; export function getStaticPaths(){return ['hong-kong','japan','singapore','taiwan','united-states'].map(region=>({params:{region}}))}; const config=configs[Astro.params.region as keyof typeof configs]; if(!config)throw new Error('unknown'); const [region,title,term]=config; const matched=related(term);
+---
+<Base title={title} description={`按服务商资料浏览含 ${region} 节点的机场。`}><main class="wrap"><section class="prose"><div class="eyebrow">Region collection</div><h1>{title}</h1><p class="lead">本页整理资料中标注 {region} 节点的机场。节点标注和第三方 IP 地理库的识别结果可能不同。</p><h2>选择提示</h2><p>地区是出口网络信息的一部分；目标服务还可能考虑 ASN、账户、设备和行为等信号。请把服务商声明与独立验证区分阅读。</p></section><AirportModule airports={matched} title={`${region} 节点资料`}/></main></Base>

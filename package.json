@@ -1,0 +1,13 @@
+{
+  "name": "jichangip-xyz",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "import:data": "powershell -ExecutionPolicy Bypass -File scripts/import-airports.ps1",
+    "check": "node scripts/check.mjs",
+    "build": "powershell -ExecutionPolicy Bypass -File scripts/build.ps1",
+    "dev": "astro dev"
+  },
+  "dependencies": { "astro": "^4.16.19" }
+}

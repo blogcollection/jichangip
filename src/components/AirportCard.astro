@@ -1,0 +1,6 @@
+---
+import type { Airport } from '../lib/data'; import { clean, list, price } from '../lib/data';
+const { airport } = Astro.props as { airport: Airport };
+const tags = [...list(airport.line_architecture).slice(0,1), ...list(airport.node_regions_standardized).slice(0,3), ...(airport.native_ip_declared ? ['服务商声明原生 IP'] : [])];
+---
+<article class="entry"><div class="meta">机场资料 · {price(airport)}</div><h3><a href={`/airports/${airport.slug}/`}>{airport.service_name}</a></h3><p>{clean(airport.summary)}</p><div class="tags">{tags.map(t => <span class="tag">{t}</span>)}</div><a href={`/airports/${airport.slug}/`}>查看资料 →</a></article>

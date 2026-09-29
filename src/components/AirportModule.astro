@@ -1,0 +1,5 @@
+---
+import AirportCard from './AirportCard.astro'; import type { Airport } from '../lib/data';
+const { airports, title = '相关机场资料' } = Astro.props as { airports: Airport[]; title?: string };
+---
+<section><div class="section-head"><h2>{title}</h2></div>{airports.length ? <div class="grid">{airports.map(airport => <AirportCard {airport}/>)}</div> : <p class="empty">暂无可对应的结构化机场资料。服务商资料导入后将显示在这里。</p>}</section>

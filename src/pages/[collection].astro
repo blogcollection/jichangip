@@ -1,0 +1,6 @@
+---
+import Base from '../layouts/Base.astro'; import AirportModule from '../components/AirportModule.astro'; import { airports, related } from '../lib/data';
+const configs={ai:['AI 服务支持声明','AI','本页聚合资料中提及 ChatGPT、Claude、Gemini 等 AI 服务的机场。服务可用性受地区、账户和平台政策影响。'],streaming:['流媒体支持声明','Netflix','本页整理服务商资料中提及流媒体的机场。流媒体结果可能变化，应以实际使用与平台条款为准。'],iepl:['IEPL 机场线路资料','IEPL','IEPL 是服务商常用的线路架构描述。本页仅按结构化资料匹配，不对性能作独立结论。'],iplc:['IPLC 机场线路资料','IPLC','IPLC 是服务商常用的线路架构描述。请选择前确认套餐及地区资料。']} as const;
+export function getStaticPaths(){return ['ai','streaming','iepl','iplc'].map(collection=>({params:{collection}}))}; const config=configs[Astro.params.collection as keyof typeof configs]; if(!config) throw new Error('Unknown'); const [title,term,copy]=config; const matched=related(term);
+---
+<Base title={title} description={copy}><main class="wrap"><section class="prose"><div class="eyebrow">Topic collection</div><h1>{title}</h1><p class="lead">{copy}</p><h2>数据来源与限制</h2><p>本站仅展示已导入的结构化服务商资料；未有独立测试数据时，不显示速度、延迟、解锁或纯净度评分。</p></section><AirportModule airports={matched} title="相关机场资料"/></main></Base>

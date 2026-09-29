@@ -1,0 +1,4 @@
+---
+import Base from '../layouts/Base.astro'; import AirportModule from '../components/AirportModule.astro'; import { nativeAirports } from '../lib/data'; const matches=nativeAirports();
+---
+<Base title="服务商声明提供原生 IP 的机场" description="仅列出资料中明确含有原生 IP 声明的机场，并说明选择限制。"><main class="wrap"><section class="prose"><div class="eyebrow">Topic collection</div><h1>服务商声明提供原生 IP 的机场</h1><p class="lead">本页只收录已导入资料中明确提及原生 IP 的服务商。声明来自服务商信息，不代表本站已独立验证。</p><h2>如何选择</h2><p>原生 IP 并非统一标准，也不保证 AI 或流媒体可用。应核对目标地区、线路、套餐条款与服务商的具体表述。</p></section><AirportModule airports={matches} title="原生 IP 声明资料"/></main></Base>

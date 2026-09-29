@@ -1,0 +1,4 @@
+---
+import Base from '../../layouts/Base.astro'; import { articles } from '../../lib/articles'; const clusters=['IP 基础','机场 IP','IP 风控','AI 与 IP','流媒体与 IP','检测教程'];
+---
+<Base title="机场 IP 知识中心" description="原生 IP、ASN、IP 风控、地区识别及 DNS / WebRTC 泄漏的基础说明。"><main class="wrap"><section><div class="eyebrow">Knowledge hub</div><h1>机场 IP 知识中心</h1><p class="lead">按 IP 基础、机场出口、风险控制、AI、流媒体和检测方法建立的中文知识库。所有服务支持信息均与服务商声明区分阅读。</p></section>{clusters.map(cluster=><section><div class="section-head"><div><h2>{cluster}</h2><p>{cluster==='机场 IP'?'理解节点、出口地址、共享与线路的关系。':'围绕实际网络判断与常见误解整理核心问题。'}</p></div></div><div class="grid">{articles.filter(a=>a.cluster===cluster).map(a=><article class="entry"><div class="meta">{a.topic}</div><h3><a href={`/ip/${a.slug}/`}>{a.title}</a></h3><p>{a.description}</p></article>)}</div></section>)}</main></Base>
