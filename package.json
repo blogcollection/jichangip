@@ -6,7 +6,7 @@
   "scripts": {
     "import:data": "powershell -ExecutionPolicy Bypass -File scripts/import-airports.ps1",
     "check": "node scripts/check.mjs",
-    "build": "powershell -ExecutionPolicy Bypass -File scripts/build.ps1",
+    "build": "node scripts/build.mjs",
     "dev": "astro dev"
   },
   "dependencies": { "astro": "^4.16.19" }
